@@ -1,14 +1,12 @@
-# Core dependencies for LangChain and Pydantic
+# Core dependencies
 langchain==0.1.20
 langchain-core==0.1.52
 langgraph==0.0.48
-pydantic==2.7.1
-
-# For running LangChain community packages
-langchain-community==0.0.38
-
-# Environment variable management
+langchain-google-genai==1.0.3
+pydantic==2.6.4 # Downgraded for compatibility
 python-dotenv==1.0.1
-
-# Utilities
 rich==13.7.1
+langsmith==0.1.57 # Explicitly added for stability
+
+# Testing dependencies
+pytest==8.2.0
