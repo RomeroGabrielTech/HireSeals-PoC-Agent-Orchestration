@@ -1,0 +1,14 @@
+# Core dependencies for LangChain and Pydantic
+langchain==0.1.20
+langchain-core==0.1.52
+langgraph==0.0.48
+pydantic==2.7.1
+
+# For running LangChain community packages
+langchain-community==0.0.38
+
+# Environment variable management
+python-dotenv==1.0.1
+
+# Utilities
+rich==13.7.1
