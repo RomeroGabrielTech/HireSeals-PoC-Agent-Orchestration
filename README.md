@@ -1,49 +1,48 @@
-# 🚀 HireSeals-PoC-Agent-Orchestration: Agente de Pedidos B2B Fiable
-Creé este PoC inmediatamente después de la entrevista para validar mi skillset con su stack exacto
+# 🚀 HireSeals-PoC-Agent-Orchestration: Reliable B2B Order Agent
+I created this PoC immediately after the interview to validate my skillset with your exact stack.
 
-Este repositorio contiene una Prueba de Concepto (PoC) que demuestra la arquitectura necesaria para automatizar flujos de trabajo de negocio críticos, como la **toma de pedidos y la cotización**, en entornos de mayoristas y distribuidores.
+This repository contains a Proof-of-Concept (PoC) demonstrating the necessary architecture to automate critical business workflows, such as **order taking and quoting**, in wholesaler and distributor environments.
 
-El enfoque está en la **fiabilidad, la escalabilidad y la validación de datos (Pydantic)**, esenciales para la integración con sistemas ERP de alto riesgo.
+The focus is on **reliability, scalability, and data validation (Pydantic)**, which are essential for integration with high-risk ERP systems.
 
 ---
 
-## 🎯 Desafío de Negocio Abordado
+## 🎯 Business Challenge Addressed
 
-En el sector B2B, un agente de IA debe gestionar lógica compleja y no puede permitirse errores en datos sensibles (SKU, precios). Este PoC modela un agente que:
+In the B2B sector, an AI agent must manage complex logic and cannot afford errors in sensitive data (SKU, prices). This PoC models an agent that:
 
-1.  Extrae los detalles de un pedido de lenguaje natural.
-2.  Valida que los datos sean correctos y consistentes.
-3.  Maneja la lógica de negocio (ej. ¿Hay inventario? ¿El precio es válido?) mediante un flujo condicional.
+1.  Extracts order details from natural language.
+2.  Validates that the data is correct and consistent.
+3.  Manages business logic (e.g., Is there inventory? Is the price valid?) using a conditional flow.
 
-## 🛠️ Stack Tecnológico Senior
+## 🛠️ Senior Technology Stack
 
-| Tecnología | Rol en la Arquitectura de HireSeals.ai |
+| Technology | Role in the HireSeals.ai Architecture |
 | :--- | :--- |
-| **LangGraph** | **Orquestación y Control de Flujo:** Utiliza un `StateGraph` y **Conditional Edges** para gestionar reintentos, validación y la lógica de negocio. Esto simula la toma de decisiones humana. |
-| **Pydantic** | **Fiabilidad y Validación Crítica:** Define los esquemas de datos (*Structured Output*) para garantizar que el LLM solo genere datos limpios y tipados, listos para un sistema ERP. |
-| **FastAPI** | **Escalabilidad de Backend:** Proporciona un *endpoint* REST de alto rendimiento para exponer el agente de IA como un microservicio, facilitando la integración en cualquier infraestructura existente. |
-| **Algoritmos y Estructuras** | La lógica de consulta de stock está optimizada (simulada) para demostrar el conocimiento de **Algoritmos de Grafos** y la eficiencia en la búsqueda de datos (relevante a mi experiencia en Neo4j/Memgraph). |
+| **LangGraph** | **Orchestration and Flow Control:** Uses a `StateGraph` and **Conditional Edges** to manage retries, validation, and business logic. This simulates human decision-making. |
+| **Pydantic** | **Reliability and Critical Validation:** Defines data schemas (*Structured Output*) to guarantee the LLM only generates clean, typed data, ready for an ERP system. |
+| **FastAPI** | **Backend Scalability:** Provides a high-performance REST *endpoint* to expose the AI agent as a microservice, facilitating integration into any existing infrastructure. |
+| **Algorithms and Structures** | The stock lookup logic is optimized (simulated) to demonstrate knowledge of **Graph Algorithms** and efficiency in data searching (relevant to my experience in Neo4j/Memgraph). |
 
 ---
 
-## 🧠 Arquitectura del Flujo (LangGraph)
+## 🧠 LangGraph Flow Architecture
 
-El grafo está diseñado para asegurar que no se cometa ningún error costoso:
+The graph is designed to ensure no costly error occurs:
 
-1.  **`extract_details` (LLM Node):** Utiliza un `Pydantic Schema` (definido en `schemas.py`) para extraer el `SKU` y la `quantity` del cliente.
-2.  **`check_inventory` (Tool Node):** Simula la llamada a la base de datos de inventario. Devuelve **"STOCK_OK"** o **"STOCK_ERROR"**.
+1.  **`extract_details` (LLM Node):** Uses a `Pydantic Schema` (defined in `schemas.py`) to extract the client's `SKU` and `quantity`.
+2.  **`check_inventory` (Tool Node):** Simulates the call to the inventory database. Returns **"STOCK_OK"** or **"STOCK_ERROR"**.
 3.  **`conditional_router` (Edge):**
-    * Si es **"STOCK_OK"**, el flujo va a `generate_quote`.
-    * Si es **"STOCK_ERROR"**, el flujo va al nodo `request_human_intervention`, documentando el error antes de fallar (Human-in-the-Loop).
+    * If it is **"STOCK_OK"**, the flow goes to `generate_quote`.
+    * If it is **"STOCK_ERROR"**, the flow goes to the `request_human_intervention` node, documenting the error before failing (Human-in-the-Loop).
 
-## 🚀 Cómo Ejecutar el PoC
+## 🚀 How to Run the PoC
 
-1.  **Clonar:** `git clone https://www.youtube.com/watch?v=GtN6N11qSgA`
-2.  **Entorno:** `python -m venv venv` y `source venv/bin/activate`
-3.  **Instalar:** `pip install -r requirements.txt`
-4.  **Configurar LLM:** Crea un archivo `.env` y define tu clave de API (ej., `OPENAI_API_KEY=...`).
-5.  **Ejecutar:** [Instrucción simple para correr `main.py` o el servidor FastAPI con `uvicorn main:app --reload`].
-
+1.  **Clone:** `git clone [YOUR_REPOSITORY_URL_HERE]`
+2.  **Environment:** `python -m venv venv` and `source venv/bin/activate`
+3.  **Install:** `pip install -r requirements.txt`
+4.  **Configure LLM:** Create a `.env` file and define your API key (e.g., `GOOGLE_API_KEY=...`).
+5.  **Execute:** [Simple instruction to run `main.py` or the FastAPI server with `uvicorn main:app --reload`].
 ---
 
 *Desarrollado por Gabriel Romero Canelón como demostración de experiencia en arquitectura de agentes.*
